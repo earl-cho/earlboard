@@ -39,10 +39,10 @@ export default function RootLayout({
           <div className="container mx-auto px-4 max-w-7xl flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <h1 className="text-xl font-black tracking-tighter text-slate-950 dark:text-white uppercase italic">
-                BLOCKCHAIN <span className="text-blue-600">MONITOR</span>
+                BLOCKCHAIN <span className="text-slate-500">MONITOR</span>
               </h1>
               <p className="text-[9px] text-slate-400 font-bold tracking-widest uppercase mt-1">
-                Digital Asset Market Intelligence & Institutional Insight
+                Digital Asset Market Intelligence & Legitimate Insight
               </p>
             </div>
             <p className="text-slate-400 text-[10px] font-bold tracking-[0.3em] uppercase">
