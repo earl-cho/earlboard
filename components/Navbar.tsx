@@ -8,7 +8,7 @@ const Navbar = () => {
     const pathname = usePathname();
 
     const tabs = [
-        { name: 'All News', href: '/' },
+        { name: 'All News', href: '/all-news' },
         { name: 'Enterprise', href: '/sector/enterprise' },
         { name: 'Crypto Native', href: '/sector/crypto_native' },
         { name: 'Regulation', href: '/sector/regulation' },

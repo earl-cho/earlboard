@@ -45,9 +45,6 @@ export default function RootLayout({
                 Digital Asset Market Intelligence & Legitimate Insight
               </p>
             </div>
-            <p className="text-slate-400 text-[10px] font-bold tracking-[0.3em] uppercase">
-              © 2026 Earlboard Research. Powered by Blackboard Intelligence.
-            </p>
           </div>
         </footer>
       </body>
