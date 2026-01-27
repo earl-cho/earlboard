@@ -19,25 +19,11 @@ export default async function ReportPage({ params }: { params: { id: string } })
 
     return (
         <article className="min-h-screen bg-white dark:bg-black text-slate-900 dark:text-slate-100">
-            {/* Navigation */}
-            <nav className="sticky top-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800">
-                <div className="container mx-auto px-4 max-w-4xl h-16 flex items-center justify-between">
-                    <Link href="/" className="flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
-                        <ArrowLeft size={18} /> BACK TO EARLBOARD
-                    </Link>
-                    <div className="flex items-center gap-4">
-                        <button className="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                            <Share2 size={20} />
-                        </button>
-                        <button className="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                            <Bookmark size={20} />
-                        </button>
-                    </div>
-                </div>
-            </nav>
-
-            {/* Hero Section */}
-            <div className="container mx-auto px-4 max-w-4xl py-12 md:py-20">
+            {/* Article Header Space */}
+            <div className="container mx-auto px-4 max-w-4xl pt-12 md:pt-20">
+                <Link href="/" className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors mb-12 uppercase tracking-widest leading-none">
+                    <ArrowLeft size={16} /> BACK TO DASHBOARD
+                </Link>
                 <div className="flex flex-wrap gap-2 mb-6">
                     {report.tags.map((tag) => (
                         <span key={tag} className="px-3 py-1 text-xs font-black tracking-widest uppercase bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-md">

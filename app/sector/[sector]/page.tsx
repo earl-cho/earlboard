@@ -21,9 +21,7 @@ export default async function SectorPage({ params }: { params: { sector: string 
     return (
         <main className="min-h-screen bg-slate-50 dark:bg-black text-slate-900 dark:text-slate-100 py-12 md:py-20">
             <div className="container mx-auto px-4 max-w-7xl">
-                <Link href="/" className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors mb-12 uppercase tracking-widest">
-                    <ArrowLeft size={16} /> BACK TO DASHBOARD
-                </Link>
+                {/* Spacing for Navbar */}
 
                 <header className="mb-16 border-l-8 border-slate-900 dark:border-white pl-8 py-4">
                     <div className="flex items-center gap-4 text-blue-600 mb-2">
