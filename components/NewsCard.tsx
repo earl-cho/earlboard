@@ -36,7 +36,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ report }) => {
                 </div>
 
                 <Link href={`/report/${report.id}`} className="block mb-2">
-                    <h3 className="text-lg font-bold leading-tight text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+                    <h3 className="text-lg font-bold leading-tight text-slate-900 dark:text-white group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors">
                         {report.title}
                     </h3>
                 </Link>
@@ -51,7 +51,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ report }) => {
                         <Clock size={12} />
                         <span>{timeAgo}</span>
                     </div>
-                    <Link href={`/report/${report.id}`} className="flex items-center gap-1 text-slate-900 dark:text-white font-black hover:text-blue-600 transition-colors">
+                    <Link href={`/report/${report.id}`} className="flex items-center gap-1 text-slate-950 dark:text-white font-black hover:opacity-70 transition-opacity">
                         READ FULL <ExternalLink size={10} />
                     </Link>
                 </div>

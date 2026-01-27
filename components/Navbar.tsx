@@ -26,7 +26,7 @@ const Navbar = () => {
                 {/* Brand - Left Aligned */}
                 <div className="flex flex-col items-start leading-none shrink-0 cursor-default">
                     <h1 className="text-2xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic">
-                        BLOCKCHAIN <span className="text-blue-600">MONITOR</span>
+                        BLOCKCHAIN <span className="text-slate-400 dark:text-slate-600">MONITOR</span>
                     </h1>
                     <p className="text-[10px] text-slate-400 font-bold tracking-widest uppercase mt-1">
                         Digital Asset Market Intelligence & Insight
@@ -42,7 +42,7 @@ const Navbar = () => {
                             className={`
                 px-4 py-2 text-xs font-black uppercase tracking-widest rounded-lg transition-all duration-200
                 ${isActive(tab.href)
-                                    ? 'bg-white dark:bg-slate-800 text-blue-600 shadow-sm'
+                                    ? 'bg-white dark:bg-slate-800 text-slate-950 dark:text-white shadow-sm'
                                     : 'text-slate-500 hover:text-slate-900 dark:hover:text-slate-300'}
               `}
                         >
@@ -51,10 +51,10 @@ const Navbar = () => {
                     ))}
                 </div>
 
-                {/* Right side placeholder (e.g. Subscribe or Search) */}
+                {/* Right side placeholder */}
                 <div className="hidden md:block shrink-0">
                     <div className="text-[10px] font-black uppercase tracking-widest text-slate-400">
-                        Institutional Insight
+                        Legitimate Insight
                     </div>
                 </div>
             </div>
