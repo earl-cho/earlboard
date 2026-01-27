@@ -41,7 +41,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ report }) => {
                     </h3>
                 </Link>
 
-                <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-3 mb-4 leading-relaxed">
+                <p className="text-base text-slate-500 dark:text-slate-400 line-clamp-3 mb-4 leading-snug">
                     {report.summary_3lines}
                 </p>
 

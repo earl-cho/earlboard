@@ -41,7 +41,7 @@ export default async function ReportPage({ params }: { params: { id: string } })
 
                 <div className="p-6 md:p-8 bg-slate-50 dark:bg-slate-900 border-l-4 border-blue-600 rounded-r-2xl mb-12">
                     <h2 className="text-xs font-black uppercase tracking-[0.3em] text-blue-600 mb-3">Executive Summary</h2>
-                    <p className="text-lg md:text-xl font-medium leading-relaxed italic text-slate-700 dark:text-slate-300">
+                    <p className="text-xl md:text-2xl font-medium leading-snug italic text-slate-700 dark:text-slate-300">
                         {report.summary_3lines}
                     </p>
                 </div>
@@ -53,13 +53,13 @@ export default async function ReportPage({ params }: { params: { id: string } })
                 )}
 
                 {/* Content */}
-                <div className="prose prose-slate dark:prose-invert max-w-none prose-lg md:prose-xl prose-headings:font-black prose-headings:tracking-tight prose-p:leading-relaxed prose-p:text-slate-600 dark:prose-p:text-slate-400">
+                <div className="prose prose-slate dark:prose-invert max-w-none prose-xl md:prose-2xl prose-headings:font-black prose-headings:tracking-tight prose-p:leading-snug prose-p:text-slate-600 dark:prose-p:text-slate-400">
                     {report.content.split('\n').map((paragraph, idx) => (
                         paragraph.trim() ? (
                             paragraph.startsWith('###') ? (
                                 <h3 key={idx} className="mt-12 mb-6 uppercase italic text-blue-600">{paragraph.replace('###', '').trim()}</h3>
                             ) : (
-                                <p key={idx} className="mb-6">{paragraph}</p>
+                                <p key={idx} className="mb-4">{paragraph}</p>
                             )
                         ) : <br key={idx} />
                     ))}

@@ -84,7 +84,7 @@ const Dashboard = async () => {
                                     <h3 className="text-3xl md:text-5xl font-black leading-[1.1] mb-6 text-slate-950 dark:text-white uppercase italic group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors tracking-tighter">
                                         {featuredArticle.title}
                                     </h3>
-                                    <p className="text-slate-500 dark:text-slate-400 text-lg leading-relaxed mb-8">
+                                    <p className="text-slate-500 dark:text-slate-400 text-xl leading-snug mb-8">
                                         {featuredArticle.summary_3lines}
                                     </p>
                                     <div className="mt-auto inline-flex items-center gap-2 text-slate-950 dark:text-white font-black text-sm uppercase tracking-[0.2em] border-b-2 border-slate-950 dark:border-white pb-1 w-fit group-hover:opacity-70 transition-all">
@@ -110,7 +110,7 @@ const Dashboard = async () => {
                                     <h4 className="text-lg font-black leading-tight text-slate-950 dark:text-white uppercase italic group-hover/side:opacity-70 transition-opacity">
                                         {article.title}
                                     </h4>
-                                    <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 line-clamp-4 leading-relaxed">
+                                    <p className="mt-2 text-sm text-slate-500 dark:text-slate-400 line-clamp-4 leading-snug">
                                         {article.summary_3lines}
                                     </p>
                                     <div className="mt-4 flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest gap-4">
