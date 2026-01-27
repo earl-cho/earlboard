@@ -110,6 +110,9 @@ const Dashboard = async () => {
                                     <h4 className="text-lg font-black leading-tight text-slate-950 dark:text-white uppercase italic group-hover/side:opacity-70 transition-opacity">
                                         {article.title}
                                     </h4>
+                                    <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                                        {article.summary_3lines}
+                                    </p>
                                     <div className="mt-4 flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest gap-4">
                                         <span>{new Date(article.created_at).toLocaleDateString()}</span>
                                     </div>
