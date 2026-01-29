@@ -35,13 +35,13 @@ export default async function ReportPage({ params }: { params: { id: string } })
                     </div>
                 </div>
 
-                <h1 className="text-4xl md:text-6xl font-black tracking-tighter leading-[1.1] mb-8 uppercase italic">
+                <h1 className="text-2xl md:text-4xl font-black tracking-tighter leading-[1.1] mb-8 uppercase italic">
                     {report.title}
                 </h1>
 
                 <div className="p-6 md:p-8 bg-slate-50 dark:bg-slate-900 border-l-4 border-blue-600 rounded-r-2xl mb-12">
                     <h2 className="text-xs font-black uppercase tracking-[0.3em] text-blue-600 mb-3">Executive Summary</h2>
-                    <p className="text-xl md:text-2xl font-medium leading-snug italic text-slate-700 dark:text-slate-300">
+                    <p className="text-lg md:text-xl font-medium leading-snug italic text-slate-700 dark:text-slate-300">
                         {report.summary_3lines}
                     </p>
                 </div>
@@ -60,14 +60,14 @@ export default async function ReportPage({ params }: { params: { id: string } })
 
                         if (trimmed.startsWith('###')) {
                             return (
-                                <h3 key={idx} className="text-2xl md:text-4xl font-black mt-12 mb-6 uppercase italic text-blue-600 tracking-tight leading-tight">
+                                <h3 key={idx} className="text-xl md:text-2xl font-black mt-10 mb-4 uppercase italic text-blue-600 tracking-tight leading-tight">
                                     {trimmed.replace('###', '').trim()}
                                 </h3>
                             );
                         }
 
                         return (
-                            <p key={idx} className="mb-2 leading-relaxed font-medium" style={{ fontSize: '1.75rem' }}>
+                            <p key={idx} className="mb-4 leading-relaxed font-medium text-lg text-slate-700 dark:text-slate-300">
                                 {trimmed}
                             </p>
                         );

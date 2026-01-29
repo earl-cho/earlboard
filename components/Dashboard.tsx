@@ -9,14 +9,14 @@ import { ko } from 'date-fns/locale';
 const Dashboard = async () => {
     // Fetch data
     const [recentNews, enterpriseNews, nativeNews, regulationNews] = await Promise.all([
-        getRecentReports(6),
+        getRecentReports(5),
         getReportsBySector('ENTERPRISE', 4),
         getReportsBySector('CRYPTO_NATIVE', 4),
         getReportsBySector('REGULATION', 4),
     ]);
 
     const featuredArticle = recentNews[0];
-    const sideArticles = recentNews.slice(1, 6);
+    const sideArticles = recentNews.slice(1, 5);
 
     const renderSection = (title: string, icon: React.ReactNode, reports: any[], sectorCode: string, variant: 'institutional' | 'data' | 'dynamic' = 'institutional') => {
         if (reports.length === 0) return null;
@@ -86,8 +86,8 @@ const Dashboard = async () => {
                         {/* Recent Briefings Sidebar */}
                         <div className="lg:col-span-4 flex flex-col gap-4 h-full">
                             <div className="flex items-center gap-2 mb-2 shrink-0">
-                                <Sparkles size={16} className="text-indigo-400" />
-                                <h4 className="premium-caps text-slate-400 italic">Latest Briefings</h4>
+                                <Sparkles size={20} className="text-indigo-400" />
+                                <h4 className="text-lg font-black uppercase italic text-slate-400 tracking-wider">Latest Briefings</h4>
                             </div>
 
                             <div className="flex-grow flex flex-col gap-4">
@@ -95,15 +95,27 @@ const Dashboard = async () => {
                                     <Link
                                         key={article.id}
                                         href={`/report/${article.id}`}
-                                        className="group/side flex-1 flex flex-col justify-center p-6 bg-white/3 dark:bg-white/2 glass rounded-[2rem] border border-white/5 hover:bg-white/5 transition-all duration-300"
+                                        className="group/side flex-1 flex flex-col p-6 bg-white/3 dark:bg-white/2 glass rounded-[2rem] border border-white/5 hover:bg-white/5 transition-all duration-300 min-h-0"
                                     >
-                                        <div className="flex items-center gap-2 mb-auto text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                                            <Clock size={10} />
-                                            <span>{formatDistanceToNow(new Date(article.created_at), { addSuffix: true, locale: ko })}</span>
+                                        <div className="flex items-center justify-between mb-3">
+                                            <div className="flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                                                <Clock size={10} />
+                                                <span>{formatDistanceToNow(new Date(article.created_at), { addSuffix: true, locale: ko })}</span>
+                                            </div>
+                                            {article.tags && article.tags[0] && (
+                                                <span className="px-2 py-0.5 bg-white/10 rounded text-[9px] font-bold uppercase text-slate-300">
+                                                    {article.tags[0]}
+                                                </span>
+                                            )}
                                         </div>
-                                        <h4 className="text-base font-black leading-tight text-slate-900 dark:text-white uppercase italic mb-2 group-hover/side:text-indigo-400 transition-colors line-clamp-2">
+
+                                        <h4 className="text-base font-black leading-tight text-slate-900 dark:text-white uppercase italic mb-3 group-hover/side:text-indigo-400 transition-colors line-clamp-2">
                                             {article.title}
                                         </h4>
+
+                                        <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed opacity-60 mt-auto">
+                                            {article.summary_3lines}
+                                        </p>
                                     </Link>
                                 ))}
                             </div>

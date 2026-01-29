@@ -25,7 +25,7 @@ const Navbar = () => {
             <div className="container mx-auto px-6 h-20 flex items-center justify-between gap-8">
                 {/* Brand - Left Aligned */}
                 <Link href="/" className="flex flex-col items-start leading-none shrink-0 hover:opacity-80 transition-opacity">
-                    <h1 className="text-xl md:text-2xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic flex items-center gap-2">
+                    <h1 className="text-xl md:text-2xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic flex items-center gap-1">
                         <span className="bg-white dark:bg-white text-black px-2 rounded-sm">BLOCKCHAIN</span>
                         <span className="text-slate-500">MONITOR</span>
                     </h1>
@@ -41,7 +41,7 @@ const Navbar = () => {
                             key={tab.name}
                             href={tab.href}
                             className={`
-                px-6 py-3 text-[12px] font-black uppercase tracking-[0.2em] rounded-lg transition-all duration-300
+                px-6 py-3 text-sm font-black uppercase tracking-[0.2em] rounded-lg transition-all duration-300
                 ${isActive(tab.href)
                                     ? 'bg-white dark:bg-white text-black shadow-xl scale-105'
                                     : 'text-slate-400 hover:text-white hover:bg-white/5'}
