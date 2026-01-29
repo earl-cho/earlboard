@@ -3,8 +3,11 @@ import { getRecentReports } from '@/lib/api';
 import NewsCard from '@/components/NewsCard';
 import { LayoutGrid } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function AllNewsPage() {
-    const reports = await getRecentReports(50);
+    const reports = await getRecentReports(100);
 
     return (
         <main className="min-h-screen bg-slate-50 dark:bg-black text-slate-900 dark:text-slate-100 py-12 md:py-20">
@@ -18,7 +21,7 @@ export default async function AllNewsPage() {
                         All <span className="text-blue-600">News</span>
                     </h1>
                     <p className="mt-4 text-slate-500 font-bold uppercase tracking-widest text-xs">
-                        Showing the latest 50 intelligence reports
+                        Showing the latest 100 intelligence reports
                     </p>
                 </header>
 

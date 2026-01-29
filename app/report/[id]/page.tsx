@@ -53,16 +53,25 @@ export default async function ReportPage({ params }: { params: { id: string } })
                 )}
 
                 {/* Content */}
-                <div className="prose prose-slate dark:prose-invert max-w-none prose-xl md:prose-2xl prose-headings:font-black prose-headings:tracking-tight prose-p:leading-snug prose-p:text-slate-600 dark:prose-p:text-slate-400">
-                    {report.content.split('\n').map((paragraph, idx) => (
-                        paragraph.trim() ? (
-                            paragraph.startsWith('###') ? (
-                                <h3 key={idx} className="mt-12 mb-6 uppercase italic text-blue-600">{paragraph.replace('###', '').trim()}</h3>
-                            ) : (
-                                <p key={idx} className="mb-4">{paragraph}</p>
-                            )
-                        ) : <br key={idx} />
-                    ))}
+                <div className="max-w-none text-slate-800 dark:text-slate-200">
+                    {report.content.split('\n').map((paragraph, idx) => {
+                        const trimmed = paragraph.trim();
+                        if (!trimmed) return null;
+
+                        if (trimmed.startsWith('###')) {
+                            return (
+                                <h3 key={idx} className="text-2xl md:text-4xl font-black mt-12 mb-6 uppercase italic text-blue-600 tracking-tight leading-tight">
+                                    {trimmed.replace('###', '').trim()}
+                                </h3>
+                            );
+                        }
+
+                        return (
+                            <p key={idx} className="mb-2 leading-relaxed font-medium" style={{ fontSize: '1.75rem' }}>
+                                {trimmed}
+                            </p>
+                        );
+                    })}
                 </div>
 
                 {/* Article Footer */}

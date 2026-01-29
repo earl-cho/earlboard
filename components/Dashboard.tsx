@@ -3,43 +3,50 @@ import { getReportsBySector, getRecentReports } from '@/lib/api';
 import NewsCard from './NewsCard';
 import { ChevronRight, BarChart3, ShieldCheck, Zap, Sparkles, Clock, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { formatDistanceToNow } from 'date-fns';
+import { ko } from 'date-fns/locale';
 
 const Dashboard = async () => {
     // Fetch data
     const [recentNews, enterpriseNews, nativeNews, regulationNews] = await Promise.all([
-        getRecentReports(4),
+        getRecentReports(6),
         getReportsBySector('ENTERPRISE', 4),
         getReportsBySector('CRYPTO_NATIVE', 4),
         getReportsBySector('REGULATION', 4),
     ]);
 
     const featuredArticle = recentNews[0];
-    const sideArticles = recentNews.slice(1, 4);
+    const sideArticles = recentNews.slice(1, 6);
 
-    const renderSection = (title: string, icon: React.ReactNode, reports: any[], sectorCode: string) => {
+    const renderSection = (title: string, icon: React.ReactNode, reports: any[], sectorCode: string, variant: 'institutional' | 'data' | 'dynamic' = 'institutional') => {
         if (reports.length === 0) return null;
 
         return (
-            <section className="mb-20">
-                <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-200 dark:border-slate-800">
-                    <div className="flex items-center gap-3">
-                        <div className="p-2 bg-slate-950 dark:bg-white text-white dark:text-slate-950 rounded-lg">
+            <section className="mb-32">
+                <div className="flex items-end justify-between mb-12 pb-6 border-b border-slate-200 dark:border-white/5">
+                    <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 flex items-center justify-center bg-slate-950 dark:bg-white text-white dark:text-slate-950 rounded-2xl rotate-3 shadow-xl">
                             {icon}
                         </div>
-                        <h2 className="text-2xl font-black tracking-tight text-slate-950 dark:text-white uppercase italic">
-                            {title}
-                        </h2>
+                        <div>
+                            <p className="premium-caps text-slate-400 mb-1">{sectorCode}</p>
+                            <h2 className="text-3xl font-black tracking-tighter text-slate-950 dark:text-white uppercase italic">
+                                {title}
+                            </h2>
+                        </div>
                     </div>
                     <Link
                         href={`/sector/${sectorCode.toLowerCase()}`}
-                        className="group flex items-center gap-2 text-xs font-black text-slate-400 hover:text-blue-600 transition-colors tracking-widest uppercase"
+                        className="group flex items-center gap-2 text-[10px] font-black text-slate-400 hover:text-white transition-colors tracking-[0.3em] uppercase"
                     >
-                        VIEW ALL <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                        EXPLORE ARCHIVE <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
                     </Link>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                {/* Variant-specific Grids */}
+                <div className={variant === 'dynamic' ? "bento-grid" : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10"}>
                     {reports.map((report) => (
-                        <NewsCard key={report.id} report={report} />
+                        <NewsCard key={report.id} report={report} variant={variant} />
                     ))}
                 </div>
             </section>
@@ -47,75 +54,57 @@ const Dashboard = async () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-7xl">
-            {/* Featured Section: New Articles */}
+        <div className="container mx-auto px-6 py-24 max-w-7xl noir-mesh min-h-screen">
+            {/* Featured Section: Cinematic Hero (Cursor Style) */}
             {featuredArticle && (
-                <section className="mb-24">
-                    <div className="flex items-center gap-3 mb-8">
-                        <div className="w-10 h-10 flex items-center justify-center bg-slate-950 dark:bg-white text-white dark:text-slate-950 rounded-full">
-                            <Sparkles size={20} />
-                        </div>
-                        <h2 className="text-3xl font-black tracking-tighter text-slate-950 dark:text-white uppercase italic">
-                            New <span className="text-slate-400">Articles</span>
-                        </h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        {/* Main Featured (Vertical XL) */}
-                        <div className="lg:col-span-2 group flex flex-col bg-white dark:bg-slate-900 rounded-[2.5rem] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all duration-500">
-                            <Link href={`/report/${featuredArticle.id}`} className="flex flex-col h-full">
-                                <div className="relative overflow-hidden aspect-[21/9]">
-                                    <img
-                                        src={featuredArticle.image_url || 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=1200&h=800&q=80'}
-                                        alt={featuredArticle.title}
-                                        className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                                </div>
-                                <div className="p-8 md:p-12 flex flex-col">
-                                    <div className="flex items-center gap-2 mb-6">
-                                        <span className="px-3 py-1 bg-slate-950 dark:bg-white text-white dark:text-slate-950 text-[10px] font-black uppercase tracking-[0.2em] rounded-md shadow-lg">
-                                            Featured
-                                        </span>
-                                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1">
-                                            <Clock size={12} /> Just Published
-                                        </span>
-                                    </div>
-                                    <h3 className="text-3xl md:text-5xl font-black leading-[1.1] mb-6 text-slate-950 dark:text-white uppercase italic group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors tracking-tighter">
-                                        {featuredArticle.title}
-                                    </h3>
-                                    <p className="text-slate-500 dark:text-slate-400 text-xl leading-snug mb-8">
-                                        {featuredArticle.summary_3lines}
-                                    </p>
-                                    <div className="mt-auto inline-flex items-center gap-2 text-slate-950 dark:text-white font-black text-sm uppercase tracking-[0.2em] border-b-2 border-slate-950 dark:border-white pb-1 w-fit group-hover:opacity-70 transition-all">
-                                        Full Intelligence <ArrowRight size={16} />
-                                    </div>
-                                </div>
-                            </Link>
+                <section className="mb-32">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        {/* Main Image - Cinematic XL */}
+                        <div className="lg:col-span-8 group relative aspect-[16/10] overflow-hidden rounded-[3rem] border border-white/10 shadow-2xl">
+                            <img
+                                src={featuredArticle.image_url || 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=1200&h=800&q=80'}
+                                alt={featuredArticle.title}
+                                className="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
+                            <div className="absolute bottom-12 left-12 right-12">
+                                <span className="px-3 py-1 bg-white text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-sm mb-6 inline-block">
+                                    Top Intelligence
+                                </span>
+                                <h3 className="text-4xl md:text-6xl font-black leading-[1] text-white uppercase italic tracking-tighter mb-6 text-balance">
+                                    {featuredArticle.title}
+                                </h3>
+                                <Link
+                                    href={`/report/${featuredArticle.id}`}
+                                    className="inline-flex items-center gap-4 text-white font-black text-sm uppercase tracking-[0.3em] border-b-2 border-white pb-2 hover:opacity-70 transition-all"
+                                >
+                                    OPEN DOSSIER <ArrowRight size={20} />
+                                </Link>
+                            </div>
                         </div>
 
-                        {/* Side Recent list */}
-                        <div className="space-y-6 flex flex-col justify-between h-full">
+                        {/* Recent Briefings Sidebar */}
+                        <div className="lg:col-span-4 flex flex-col gap-6 justify-between h-full py-4">
+                            <div className="flex items-center gap-2 mb-4">
+                                <Sparkles size={16} className="text-indigo-400" />
+                                <h4 className="premium-caps text-slate-400 italic">Latest Briefings</h4>
+                            </div>
                             {sideArticles.map((article) => (
                                 <Link
                                     key={article.id}
                                     href={`/report/${article.id}`}
-                                    className="group/side block p-6 bg-white dark:bg-slate-900/50 rounded-3xl border border-slate-200 dark:border-slate-800/50 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all shadow-sm flex-1"
+                                    className="group/side block p-8 bg-white/3 dark:bg-white/2 glass rounded-[2rem] border border-white/5 hover:bg-white/5 transition-all duration-300"
                                 >
-                                    <div className="flex items-center gap-2 mb-3">
-                                        {article.tags.slice(0, 1).map(tag => (
-                                            <span key={tag} className="text-[9px] font-black text-slate-900 dark:text-white uppercase tracking-widest border-b border-slate-900 dark:border-white">{tag}</span>
-                                        ))}
+                                    <div className="flex items-center gap-2 mb-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                                        <Clock size={10} />
+                                        <span>{formatDistanceToNow(new Date(article.created_at), { addSuffix: true, locale: ko })}</span>
                                     </div>
-                                    <h4 className="text-lg font-black leading-tight text-slate-950 dark:text-white uppercase italic group-hover/side:opacity-70 transition-opacity">
+                                    <h4 className="text-lg font-black leading-tight text-slate-900 dark:text-white uppercase italic mb-4 group-hover/side:text-indigo-400 transition-colors">
                                         {article.title}
                                     </h4>
-                                    <p className="mt-2 text-sm text-slate-500 dark:text-slate-400 line-clamp-4 leading-snug">
+                                    <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed opacity-60">
                                         {article.summary_3lines}
                                     </p>
-                                    <div className="mt-4 flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest gap-4">
-                                        <span>{new Date(article.created_at).toLocaleDateString()}</span>
-                                    </div>
                                 </Link>
                             ))}
                         </div>
@@ -123,10 +112,10 @@ const Dashboard = async () => {
                 </section>
             )}
 
-            {/* Categorized Sections */}
-            {renderSection('Enterprise Adoption', <BarChart3 size={20} />, enterpriseNews, 'ENTERPRISE')}
-            {renderSection('Crypto Native', <Zap size={20} />, nativeNews, 'CRYPTO_NATIVE')}
-            {renderSection('Regulation & Policy', <ShieldCheck size={20} />, regulationNews, 'REGULATION')}
+            {/* Hybrid Categorized Sections */}
+            {renderSection('Regulation & Policy', <ShieldCheck size={24} />, regulationNews, 'POLICY', 'institutional')}
+            {renderSection('Enterprise Adoption', <BarChart3 size={24} />, enterpriseNews, 'MARKET', 'data')}
+            {renderSection('Crypto Native', <Zap size={24} />, nativeNews, 'CYPHER', 'dynamic')}
         </div>
     );
 };
