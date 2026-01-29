@@ -54,7 +54,7 @@ const Dashboard = async () => {
     };
 
     return (
-        <div className="container mx-auto px-6 py-24 max-w-7xl noir-mesh min-h-screen">
+        <div className="container mx-auto px-6 py-24 max-w-7xl">
             {/* Featured Section: Cinematic Hero (Cursor Style) */}
             {featuredArticle && (
                 <section className="mb-32">
