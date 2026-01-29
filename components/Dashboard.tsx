@@ -58,9 +58,9 @@ const Dashboard = async () => {
             {/* Featured Section: Cinematic Hero (Cursor Style) */}
             {featuredArticle && (
                 <section className="mb-32">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch h-auto lg:h-[600px]">
                         {/* Main Image - Cinematic XL */}
-                        <div className="lg:col-span-8 group relative aspect-[16/10] overflow-hidden rounded-[3rem] border border-white/10 shadow-2xl">
+                        <div className="lg:col-span-8 group relative overflow-hidden rounded-[3rem] border border-white/10 shadow-2xl h-full">
                             <img
                                 src={featuredArticle.image_url || 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=1200&h=800&q=80'}
                                 alt={featuredArticle.title}
@@ -71,7 +71,7 @@ const Dashboard = async () => {
                                 <span className="px-3 py-1 bg-white text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-sm mb-6 inline-block">
                                     Top Intelligence
                                 </span>
-                                <h3 className="text-4xl md:text-6xl font-black leading-[1] text-white uppercase italic tracking-tighter mb-6 text-balance">
+                                <h3 className="text-4xl md:text-5xl font-black leading-[1.1] text-white uppercase italic tracking-tighter mb-6 text-balance">
                                     {featuredArticle.title}
                                 </h3>
                                 <Link
@@ -84,29 +84,29 @@ const Dashboard = async () => {
                         </div>
 
                         {/* Recent Briefings Sidebar */}
-                        <div className="lg:col-span-4 flex flex-col gap-6 justify-between h-full py-4">
-                            <div className="flex items-center gap-2 mb-4">
+                        <div className="lg:col-span-4 flex flex-col gap-4 h-full">
+                            <div className="flex items-center gap-2 mb-2 shrink-0">
                                 <Sparkles size={16} className="text-indigo-400" />
                                 <h4 className="premium-caps text-slate-400 italic">Latest Briefings</h4>
                             </div>
-                            {sideArticles.map((article) => (
-                                <Link
-                                    key={article.id}
-                                    href={`/report/${article.id}`}
-                                    className="group/side block p-8 bg-white/3 dark:bg-white/2 glass rounded-[2rem] border border-white/5 hover:bg-white/5 transition-all duration-300"
-                                >
-                                    <div className="flex items-center gap-2 mb-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                                        <Clock size={10} />
-                                        <span>{formatDistanceToNow(new Date(article.created_at), { addSuffix: true, locale: ko })}</span>
-                                    </div>
-                                    <h4 className="text-lg font-black leading-tight text-slate-900 dark:text-white uppercase italic mb-4 group-hover/side:text-indigo-400 transition-colors">
-                                        {article.title}
-                                    </h4>
-                                    <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed opacity-60">
-                                        {article.summary_3lines}
-                                    </p>
-                                </Link>
-                            ))}
+
+                            <div className="flex-grow flex flex-col gap-4">
+                                {sideArticles.map((article) => (
+                                    <Link
+                                        key={article.id}
+                                        href={`/report/${article.id}`}
+                                        className="group/side flex-1 flex flex-col justify-center p-6 bg-white/3 dark:bg-white/2 glass rounded-[2rem] border border-white/5 hover:bg-white/5 transition-all duration-300"
+                                    >
+                                        <div className="flex items-center gap-2 mb-auto text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                                            <Clock size={10} />
+                                            <span>{formatDistanceToNow(new Date(article.created_at), { addSuffix: true, locale: ko })}</span>
+                                        </div>
+                                        <h4 className="text-base font-black leading-tight text-slate-900 dark:text-white uppercase italic mb-2 group-hover/side:text-indigo-400 transition-colors line-clamp-2">
+                                            {article.title}
+                                        </h4>
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </section>

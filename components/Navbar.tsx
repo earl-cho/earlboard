@@ -26,7 +26,7 @@ const Navbar = () => {
                 {/* Brand - Left Aligned */}
                 <Link href="/" className="flex flex-col items-start leading-none shrink-0 hover:opacity-80 transition-opacity">
                     <h1 className="text-xl md:text-2xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic flex items-center gap-2">
-                        <span className="bg-white dark:bg-white text-black px-2 rounded-sm rotate-[-2deg]">BLACKBOARD</span>
+                        <span className="bg-white dark:bg-white text-black px-2 rounded-sm">BLOCKCHAIN</span>
                         <span className="text-slate-500">MONITOR</span>
                     </h1>
                     <p className="premium-caps text-slate-400 mt-2">
@@ -41,7 +41,7 @@ const Navbar = () => {
                             key={tab.name}
                             href={tab.href}
                             className={`
-                px-5 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] rounded-lg transition-all duration-300
+                px-6 py-3 text-[12px] font-black uppercase tracking-[0.2em] rounded-lg transition-all duration-300
                 ${isActive(tab.href)
                                     ? 'bg-white dark:bg-white text-black shadow-xl scale-105'
                                     : 'text-slate-400 hover:text-white hover:bg-white/5'}
@@ -56,7 +56,7 @@ const Navbar = () => {
                 <div className="hidden md:flex items-center gap-4 shrink-0">
                     <div className="flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
                         <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-500">Live AI Feed</span>
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-500">LIVE INTELLIGENCE</span>
                     </div>
                 </div>
             </div>
