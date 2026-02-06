@@ -162,15 +162,16 @@ export default function RegulationBible() {
                                     },
                                     h3: ({ children }) => {
                                         const id = generateId(children);
-                                        return <h3 id={id} className="text-md font-bold tracking-tight text-slate-800 dark:text-slate-200 mt-8 mb-3 scroll-mt-32 flex items-center gap-2">
+                                        return <h3 id={id} className="text-md font-bold tracking-tight text-slate-800 dark:text-slate-200 mt-10 mb-3 scroll-mt-32 flex items-center gap-2">
                                             <div className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
                                             {children}
                                         </h3>
                                     },
-                                    ul: ({ node, ...props }) => <ul className="list-disc pl-6 space-y-1 mb-5" {...props} />,
-                                    ol: ({ node, ...props }) => <ol className="list-decimal pl-6 space-y-1 mb-5" {...props} />,
-                                    li: ({ node, ...props }) => <li className="text-slate-700 dark:text-slate-300 text-[14px] leading-[1.55] mb-1" {...props} />,
-                                    p: ({ node, ...props }) => <p className="text-slate-700 dark:text-slate-300 text-[14px] leading-[1.55] mb-4 text-justify antialiased font-medium tracking-tight" {...props} />,
+                                    ul: ({ node, ...props }) => <ul className="list-disc pl-6 space-y-2 mb-5" {...props} />,
+                                    ol: ({ node, ...props }) => <ol className="list-decimal pl-6 space-y-2 mb-5" {...props} />,
+                                    li: ({ node, ...props }) => <li className="text-slate-700 dark:text-slate-300 text-[14px] leading-[1.7] mb-1.5" {...props} />,
+                                    p: ({ node, ...props }) => <p className="text-slate-700 dark:text-slate-300 text-[14px] leading-[1.7] mb-5 text-justify antialiased font-medium tracking-tight" {...props} />,
+
                                     table: ({ node, ...props }) => (
                                         <div className="overflow-x-auto my-8 border border-slate-200 dark:border-slate-800 rounded-sm shadow-sm">
                                             <table className="w-full text-[12px] border-collapse bg-white dark:bg-black/20" {...props} />
