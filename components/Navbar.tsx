@@ -12,7 +12,9 @@ const Navbar = () => {
         { name: 'Enterprise', href: '/sector/enterprise' },
         { name: 'Crypto Native', href: '/sector/crypto_native' },
         { name: 'Regulation', href: '/sector/regulation' },
+        { name: 'PRO', href: '/regulation' },
     ];
+
 
     const isActive = (href: string) => {
         if (href === '/' && pathname === '/') return true;

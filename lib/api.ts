@@ -6,6 +6,7 @@ export async function getReportsBySector(sector: SectorType, limit = 4): Promise
         .from('market_reports')
         .select('*')
         .contains('tags', [sector])
+        .not('tags', 'cs', '{"REGULATION_BIBLE"}')
         .order('created_at', { ascending: false })
         .limit(limit);
 
@@ -21,6 +22,7 @@ export async function getRecentReports(limit = 4): Promise<MarketReport[]> {
     const { data, error } = await supabase
         .from('market_reports')
         .select('*')
+        .not('tags', 'cs', '{"REGULATION_BIBLE"}')
         .order('created_at', { ascending: false })
         .limit(limit);
 
